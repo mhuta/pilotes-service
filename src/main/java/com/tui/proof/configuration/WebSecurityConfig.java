@@ -16,19 +16,19 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
   @Override
   protected void configure(final HttpSecurity http) throws Exception {
     http
-        .csrf().disable()
-        .authorizeRequests()
-        .antMatchers(HttpMethod.GET, "/orders").authenticated()
-        .antMatchers("/orders").permitAll()
-        .and().httpBasic();
+      .csrf().disable()
+      .authorizeRequests()
+      .antMatchers(HttpMethod.GET, "/orders").authenticated()
+      .antMatchers("/orders").permitAll()
+      .and().httpBasic();
   }
 
   @Override
   protected void configure(final AuthenticationManagerBuilder auth) throws Exception {
     final PasswordEncoder encoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
     auth.inMemoryAuthentication()
-        .withUser("user")
-        .password(encoder.encode("password"))
-        .roles("USER");
+      .withUser("user")
+      .password(encoder.encode("password"))
+      .roles("USER");
   }
 }

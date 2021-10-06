@@ -21,7 +21,7 @@ public class OrderValidator {
   private void validateNumerOfPilotes(final int pilotes) {
     if (!VALID_NUM_OF_PILOTES.contains(pilotes)) {
       throw new IllegalArgumentException("Number of pilotes is invalid. " +
-          "The portion can consist only of values: " + VALID_NUM_OF_PILOTES);
+        "The portion can consist only of values: " + VALID_NUM_OF_PILOTES);
     }
   }
 }

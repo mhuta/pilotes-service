@@ -19,36 +19,36 @@ import java.util.regex.Pattern;
 @RequestMapping("/orders")
 @RequiredArgsConstructor
 public class OrderController {
-    private static final Pattern SEARCH_PATTERN = Pattern.compile("(\\w+?)([:<>])(\\w+?),");
+  private static final Pattern SEARCH_PATTERN = Pattern.compile("(\\w+?)([:<>])(\\w+?),");
 
-    private final OrderService orderService;
-    private final OrderSearchService orderSearchService;
-    private final OrderValidator orderValidator;
-    private final MiquelNotifyService miquelAsyncNotifyService;
+  private final OrderService orderService;
+  private final OrderSearchService orderSearchService;
+  private final OrderValidator orderValidator;
+  private final MiquelNotifyService miquelAsyncNotifyService;
 
-    @PostMapping
-    public void createOrder(@RequestBody final OrderRequest orderRequest) {
-        orderValidator.validateOrder(orderRequest);
-        orderService.createOrder(orderRequest);
+  @PostMapping
+  public void createOrder(@RequestBody final OrderRequest orderRequest) {
+    orderValidator.validateOrder(orderRequest);
+    orderService.createOrder(orderRequest);
 
-        miquelAsyncNotifyService.notifyMiquel(orderRequest.getOrder().getPilotes());
+    miquelAsyncNotifyService.notifyMiquel(orderRequest.getOrder().getPilotes());
+  }
+
+  @PutMapping
+  public void updateOrder(@RequestBody final OrderRequest orderRequest) {
+    orderValidator.validateOrder(orderRequest);
+    orderService.updateOrder(orderRequest);
+  }
+
+  @GetMapping
+  public List<Order> findOrders(@RequestParam(value = "search", required = false) String search) {
+    final List<SearchCriteria> params = new ArrayList<>();
+    if (search != null) {
+      final Matcher matcher = SEARCH_PATTERN.matcher(search + ",");
+      while (matcher.find()) {
+        params.add(new SearchCriteria(matcher.group(1), matcher.group(2), matcher.group(3)));
+      }
     }
-
-    @PutMapping
-    public void updateOrder(@RequestBody final OrderRequest orderRequest) {
-        orderValidator.validateOrder(orderRequest);
-        orderService.updateOrder(orderRequest);
-    }
-
-    @GetMapping
-    public List<Order> findOrders(@RequestParam(value = "search", required = false) String search) {
-        final List<SearchCriteria> params = new ArrayList<>();
-        if (search != null) {
-            final Matcher matcher = SEARCH_PATTERN.matcher(search + ",");
-            while (matcher.find()) {
-                params.add(new SearchCriteria(matcher.group(1), matcher.group(2), matcher.group(3)));
-            }
-        }
-        return orderSearchService.searchOrder(params);
-    }
+    return orderSearchService.searchOrder(params);
+  }
 }

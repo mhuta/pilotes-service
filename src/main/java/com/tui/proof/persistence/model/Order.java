@@ -16,14 +16,14 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Order {
-    @Id
-    private String number;
-    private int pilotes;
-    private double orderTotal;
-    @CreationTimestamp
-    private LocalDateTime createDateTime;
-    @OneToOne(cascade = CascadeType.ALL)
-    private Address address;
-    @OneToOne(cascade = CascadeType.ALL)
-    private Client client;
+  @Id
+  private String number;
+  private int pilotes;
+  private double orderTotal;
+  @CreationTimestamp
+  private LocalDateTime createDateTime;
+  @OneToOne(cascade = CascadeType.ALL)
+  private Address address;
+  @OneToOne(cascade = CascadeType.ALL)
+  private Client client;
 }
