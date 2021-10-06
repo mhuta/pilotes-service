@@ -58,6 +58,6 @@ public class OrderService {
   }
 
   private boolean canOrderBeUpdated(Order order) {
-    return order.getCreateDateTime().plusMinutes(MAX_UPDATE_TIME_MINUTES).isBefore(LocalDateTime.now());
+    return order.getCreateDateTime().isBefore(LocalDateTime.now().plusMinutes(MAX_UPDATE_TIME_MINUTES));
   }
 }

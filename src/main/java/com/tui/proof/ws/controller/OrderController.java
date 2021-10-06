@@ -7,6 +7,7 @@ import com.tui.proof.service.OrderSearchService;
 import com.tui.proof.service.OrderService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -27,6 +28,7 @@ public class OrderController {
   private final MiquelNotifyService miquelAsyncNotifyService;
 
   @PostMapping
+  @ResponseStatus(value = HttpStatus.CREATED)
   public void createOrder(@RequestBody final OrderRequest orderRequest) {
     orderValidator.validateOrder(orderRequest);
     orderService.createOrder(orderRequest);
