@@ -1,5 +1,24 @@
-## Summary
+## Pilotes Order Service
 
-TUI DX Backend technical Test v2
+“Pilotes” are a Majorcan recipe that consisting of a meatball stew.
 
-The base project uses lombok, so you have to install it. You can use the following guide https://www.baeldung.com/lombok-ide
+
+### Run description
+
+To build the project issue:
+```shell
+mvn clean install
+```
+
+To build docker image with application issue:
+```shell
+mvn spring-boot:build-image
+```
+
+To run docker image issue:
+```shell
+docker run -p 9090:8080 -t docker.io/library/backend-technical-test:2.0.0-SNAPSHOT
+```
+
+## Author
+Mateusz Huta
