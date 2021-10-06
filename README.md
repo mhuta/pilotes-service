@@ -1,7 +1,7 @@
 ## Pilotes Order Service
 
 “Pilotes” are a Majorcan recipe that consisting of a meatball stew.
-
+This service allows to store orders and notifiy Miquel Montoro to start cooking.
 
 ### Run description
 
