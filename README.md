@@ -10,6 +10,11 @@ To build the project issue:
 mvn clean install
 ```
 
+To run Spotbugs tool issue:
+```shell
+mvn spotbugs:check
+```
+
 To build docker image with application issue:
 ```shell
 mvn spring-boot:build-image
