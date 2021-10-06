@@ -5,11 +5,9 @@ import lombok.Data;
 import javax.validation.constraints.NotNull;
 
 @Data
-public class Client {
+public class OrderRequest {
   @NotNull
-  private String firstName;
+  private Order order;
   @NotNull
-  private String lastName;
-  @NotNull
-  private String telephone;
+  private Client client;
 }
