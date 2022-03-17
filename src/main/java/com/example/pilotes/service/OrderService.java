@@ -20,8 +20,7 @@ public class OrderService {
 
   public void createOrder(final OrderRequest orderRequest) {
     final Order order = buildOrder(orderRequest);
-
-    orderRepository.saveAndFlush(order);
+    orderRepository.save(order);
   }
 
   public void updateOrder(final OrderRequest orderRequest) {
